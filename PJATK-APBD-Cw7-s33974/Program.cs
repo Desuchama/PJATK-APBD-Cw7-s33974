@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Design;
 using PJATK_APBD_Cw7_s33974.Infrastructure;
 using PJATK_APBD_Cw7_s33974.Services;
 
@@ -14,7 +15,7 @@ builder.Services.AddScoped<IPCsService, PCsService>();
 
 builder.Services.AddDbContext<AppDbContext>(opt =>
 {
-	opt.UseSqlServer(builder.Configuration.GetConnectionString("Default"));
+	opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
 var app = builder.Build();

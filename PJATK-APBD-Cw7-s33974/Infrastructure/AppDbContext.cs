@@ -3,14 +3,14 @@ using PJATK_APBD_Cw7_s33974.Models;
 
 namespace PJATK_APBD_Cw7_s33974.Infrastructure;
 
-public class AppDbContext(DbContextOptions opt) : DbContext
+public class AppDbContext(DbContextOptions opt) : DbContext(opt)
 {
-	public DbSet<PCs> PCs { get; set; }
-	public DbSet<PCComponents> PCComponents { get; set; }
-	public DbSet<Components> Components { get; set; }
 	public DbSet<ComponentManufacturers> ComponentManufacturers { get; set; }
 	public DbSet<ComponentTypes> ComponentTypes { get; set; }
-
+	public DbSet<Components> Components { get; set; }
+	public DbSet<PCComponents> PCComponents { get; set; }
+	public DbSet<PCs> PCs { get; set; }
+	
 	protected override void OnModelCreating(ModelBuilder modelBuilder)
 	{
 		base.OnModelCreating(modelBuilder);
@@ -98,7 +98,7 @@ public class AppDbContext(DbContextOptions opt) : DbContext
 					Name = "Gaming Beast X",
 					Weight = (decimal)12.5,
 					Warranty = 36,
-					Stock = 5,
+					Stock = 5
 				},
 				new PCs
 				{
@@ -106,7 +106,15 @@ public class AppDbContext(DbContextOptions opt) : DbContext
 					Name = "Office Mini Pro",
 					Weight = (decimal)4.2,
 					Warranty = 24,
-					Stock = 12,
+					Stock = 12
+				},
+				new PCs
+				{
+				Id = 3,
+				Name = "Gaming Beast XII",
+				Weight = (decimal)15.0,
+				Warranty = 12,
+				Stock = 1
 				}
 			]
 		);
@@ -135,6 +143,24 @@ public class AppDbContext(DbContextOptions opt) : DbContext
 					PCId = 2,
 					ComponentCode = "RAM0000001",
 					Amount = 1
+				},
+				new PCComponents
+				{
+					PCId = 3,
+					ComponentCode = "RAM0000001",
+					Amount = 4
+				},
+				new PCComponents
+				{
+					PCId = 3,
+					ComponentCode = "CPU0000001",
+					Amount = 2
+				},
+				new PCComponents
+				{
+					PCId = 3,
+					ComponentCode = "GPU0000001",
+					Amount = 2
 				},
 			]
 		);
