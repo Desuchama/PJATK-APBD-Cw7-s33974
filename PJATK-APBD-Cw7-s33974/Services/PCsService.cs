@@ -34,31 +34,64 @@ public class PCsService(AppDbContext ctx) : IPCsService
 				       pc.Stock,
 				       pc.PCComponents.Select(pcom => new PCComponentsDto(
 					       pcom.Amount,
-					       ctx.Components.Select(com => new ComponentDto(
-								com.Code,
-								com.Name,
-								com.Description,
-								ctx.ComponentManufacturers.Select(man => new ComponentManufacturersDto(
-								   man.Id,
-								   man.Abbreviation,
-								   man.FullName,
-								   man.FoundationDate
-								))
-								//.Where(man => man.Id == com.ComponentsManufacturersId)
-								.FirstOrDefault()
-								,
-								ctx.ComponentTypes.Select(typ => new ComponentTypesDto(
-									typ.Id,
-								    typ.Abbreviation,
-								    typ.Name
-								))
-								//.Where(typ => typ.Id == com.ComponentsTypeId)
-								.FirstOrDefault()
-							))
-							.FirstOrDefault()
-					       )).ToList()
+					       new ComponentDto(
+						       pcom.Components.Code,
+						       pcom.Components.Name,
+						       pcom.Components.Description,
+						       new ComponentManufacturersDto(
+                                   pcom.Components.ComponentManufacturers.Id,
+                                   pcom.Components.ComponentManufacturers.Abbreviation,
+                                   pcom.Components.ComponentManufacturers.FullName,
+                                   pcom.Components.ComponentManufacturers.FoundationDate
+	                            ),
+						       new ComponentTypesDto(
+							       pcom.Components.ComponentTypes.Id,
+							       pcom.Components.ComponentTypes.Abbreviation,
+							       pcom.Components.ComponentTypes.Name
+							    )
+					       )
 				       ))
+					       .ToList()
+				       )
+			       )
 			       .FirstOrDefaultAsync()
+			  //      .Where(pc => pc.Id == id)
+					// .Select(pc => new PCDetailedResponseDto(
+					// 	 pc.Id,
+					// 	 pc.Name,
+					// 	 pc.Weight,
+					// 	 pc.Warranty,
+					// 	 pc.CreatedAt,
+					// 	 pc.Stock,
+				 //        ctx.PCComponents
+					//         .Where(pcom => pcom.PCId == pc.Id)
+					//         .Select(pcom => new PCComponentsDto(
+					//         pcom.Amount,
+					//         ctx.Components.Select(com => new ComponentDto(
+					// 			 com.Code,
+					// 			 com.Name,
+					// 			 com.Description,
+					// 			 ctx.ComponentManufacturers
+					// 			 	.Where(man => man.Id == com.ComponentsManufacturersId)
+					// 			 	.Select(man => new ComponentManufacturersDto(
+					// 			 		   man.Id,
+					// 			 		   man.Abbreviation,
+					// 			 		   man.FullName,
+					// 			 		   man.FoundationDate
+					// 			 		)
+					// 			 	)
+					// 			 .FirstOrDefault(),
+					// 			 ctx.ComponentTypes
+					// 			 	.Where(typ => typ.Id == com.ComponentsTypeId)
+					// 			 	.Select(typ => new ComponentTypesDto(
+					// 			 			typ.Id,
+					// 			 		    typ.Abbreviation,
+					// 			 		    typ.Name
+					// 			 		)
+					// 			 	)
+					// 			 .FirstOrDefault()
+					// 	)))).ToList()
+			  //  )).FirstOrDefaultAsync()
 		       ?? throw new NotFoundException($"PC with ID {id} not found");
 	}
 
@@ -98,8 +131,13 @@ public class PCsService(AppDbContext ctx) : IPCsService
 			throw new NotFoundException($"PC with ID {id} not found");
 	}
 
-	public Task DeleteAsync(int id)
+	public async Task DeleteAsync(int id)
 	{
-		throw new NotImplementedException();
+		int affectedRows = await ctx.PCs
+			.Where(pc => pc.Id == id)
+			.ExecuteDeleteAsync();
+        
+		if (affectedRows == 0)
+			throw new NotFoundException($"PC with ID {id} not found");
 	}
 }

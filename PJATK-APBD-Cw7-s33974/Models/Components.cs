@@ -16,10 +16,11 @@ public class Components
 	public string Description { get; set; }
 	public int ComponentsManufacturersId { get; set; }
 	public int ComponentsTypeId { get; set; }
-	[ForeignKey(nameof(ComponentsManufacturersId))]
-	public ComponentManufacturers ComponentManufacturers { get; set; }
-	[ForeignKey(nameof(ComponentsTypeId))]
-	public ComponentTypes ComponentTypes { get; set; }
 
-	public IEnumerable<PCComponents> PCComponents { get; set; } = [];
+	[ForeignKey(nameof(ComponentsManufacturersId))]
+	public ComponentManufacturers ComponentManufacturers { get; set; } = null!;
+
+	[ForeignKey(nameof(ComponentsTypeId))] public ComponentTypes ComponentTypes { get; set; } = null!;
+
+	public IEnumerable<PCComponents> PCComponents { get; set; } = new List<PCComponents>();
 }

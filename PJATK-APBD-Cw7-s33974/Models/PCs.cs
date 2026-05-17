@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.VisualBasic;
 
 namespace PJATK_APBD_Cw7_s33974.Models;
 
@@ -16,5 +17,5 @@ public class PCs
 	public DateTime CreatedAt { get; set; }
 	public int Stock { get; set; }
 
-	public IEnumerable<PCComponents> PCComponents { get; set; } = [];
+	public IEnumerable<PCComponents> PCComponents { get; set; } = new List<PCComponents>();
 }

@@ -13,7 +13,7 @@ public class PCComponents
 	public int Amount { get; set; }
 	
 	[ForeignKey(nameof(PCId))] 
-	public PCs PC { get; set; } = null;
+	public PCs PCs { get; set; } = null!;
 	[ForeignKey(nameof(ComponentCode))]
-	public Components Component { get; set; } = null;
+	public Components Components { get; set; } = null!;
 }

@@ -3,5 +3,5 @@
 public class PCComponentsDto
 (
 	int Amount,
-	ComponentDto? Component
+	ComponentDto Component
 );
