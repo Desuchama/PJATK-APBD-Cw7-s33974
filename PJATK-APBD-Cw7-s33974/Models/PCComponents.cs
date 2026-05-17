@@ -15,5 +15,5 @@ public class PCComponents
 	[ForeignKey(nameof(PCId))] 
 	public PCs PC { get; set; } = null;
 	[ForeignKey(nameof(ComponentCode))]
-	public Components Component { get; set; } =  null;
+	public Components Component { get; set; } = null;
 }

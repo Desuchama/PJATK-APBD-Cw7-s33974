@@ -10,5 +10,5 @@ public record PCDetailedResponseDto
 	int Warranty,
 	DateTime CreatedAt,
 	int Stock,
-	IEnumerable<PCComponentsDto> PCComponentsDtos
+	IEnumerable<PCComponentsDto>? ComponentsDtos
 );

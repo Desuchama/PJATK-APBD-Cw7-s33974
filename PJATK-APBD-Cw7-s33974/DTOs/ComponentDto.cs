@@ -5,6 +5,6 @@ public record ComponentDto
 	string Code,
 	string Name,
 	string Description,
-	ComponentManufacturersDto ComponentManufacturersDto,
-	ComponentTypesDto ComponentTypesDto
+	ComponentManufacturersDto? ComponentManufacturersDto,
+	ComponentTypesDto? ComponentTypesDto
 );

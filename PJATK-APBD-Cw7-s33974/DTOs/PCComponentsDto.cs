@@ -2,6 +2,6 @@
 
 public class PCComponentsDto
 (
-	int PCId,
-	IEnumerable<ComponentDto> Components
+	int Amount,
+	ComponentDto? Component
 );

@@ -98,6 +98,7 @@ public class AppDbContext(DbContextOptions opt) : DbContext(opt)
 					Name = "Gaming Beast X",
 					Weight = (decimal)12.5,
 					Warranty = 36,
+					CreatedAt = DateTime.Parse("2026-05-08T09:00:00"),
 					Stock = 5
 				},
 				new PCs
@@ -106,15 +107,17 @@ public class AppDbContext(DbContextOptions opt) : DbContext(opt)
 					Name = "Office Mini Pro",
 					Weight = (decimal)4.2,
 					Warranty = 24,
+					CreatedAt = DateTime.Parse("2026-01-09T09:00:00"),
 					Stock = 12
 				},
 				new PCs
 				{
-				Id = 3,
-				Name = "Gaming Beast XII",
-				Weight = (decimal)15.0,
-				Warranty = 12,
-				Stock = 1
+					Id = 3,
+					Name = "Gaming Beast XII",
+					Weight = (decimal)15.0,
+					Warranty = 12,
+					CreatedAt = DateTime.Parse("2026-05-17T09:00:00"),
+					Stock = 1
 				}
 			]
 		);

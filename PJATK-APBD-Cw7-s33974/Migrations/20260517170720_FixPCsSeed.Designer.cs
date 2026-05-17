@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PJATK_APBD_Cw7_s33974.Infrastructure;
 
@@ -11,9 +12,11 @@ using PJATK_APBD_Cw7_s33974.Infrastructure;
 namespace PJATK_APBD_Cw7_s33974.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260517170720_FixPCsSeed")]
+    partial class FixPCsSeed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -264,7 +267,7 @@ namespace PJATK_APBD_Cw7_s33974.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2026, 5, 8, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(2026, 5, 17, 19, 7, 19, 925, DateTimeKind.Local).AddTicks(601),
                             Name = "Gaming Beast X",
                             Stock = 5,
                             Warranty = 36,
@@ -273,7 +276,7 @@ namespace PJATK_APBD_Cw7_s33974.Migrations
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2026, 1, 9, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(2026, 5, 17, 19, 7, 19, 926, DateTimeKind.Local).AddTicks(1567),
                             Name = "Office Mini Pro",
                             Stock = 12,
                             Warranty = 24,
@@ -282,7 +285,7 @@ namespace PJATK_APBD_Cw7_s33974.Migrations
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2026, 5, 17, 9, 0, 0, 0, DateTimeKind.Unspecified),
+                            CreatedAt = new DateTime(2026, 5, 17, 19, 7, 19, 926, DateTimeKind.Local).AddTicks(1589),
                             Name = "Gaming Beast XII",
                             Stock = 1,
                             Warranty = 12,
